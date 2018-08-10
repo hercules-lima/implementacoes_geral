@@ -1,0 +1,163 @@
+1- CRIAR BANCO AULA
+CREATE DATABASE AULA;
+
+2- DESTRUIR BANCO AULA
+DROP DATABASE AULA;
+
+1- Inserir dados
+INSERT INTO CLIENTES(NOME, CPF, DATA_NASC)
+VALUES('Maria','78945612345','2000/12/25');
+
+INSERT INTO CLIENTES
+VALUES('','Maria','78945612345','2000/12/25',null);
+
+
+2- Selecionar todos os clientes
+SELECT * FROM CLIENTES;
+
+3- Selecionar ID, NOME, CPF de todos os clientes;
+SELECT ID, NOME, CPF FROM CLIENTES;
+
+4- Selecione os clientes com SALARIO > 2000
+SELECT * FROM CLIENTES WHERE SALARIO > 2000;
+
+5- Selecione todos os clientes com NOME = Maria
+SELECT * FROM CLIENTES WHERE NOME='Maria';
+
+6- Delete o cliente de ID = 6
+DELETE FROM CLIENTES WHERE ID=6;
+
+7- Delete os clientes de SALARIO < 3000
+DELETE FROM CLIENTES WHERE SALARIO < 3000;
+
+8- Delete todos os clientes
+DELETE FROM CLIENTES;
+
+9- Selecione os clientes nascidos depois do ano 2000
+SELECT * FROM CLIENTES WHERE DATA_NASC >= '2000-01-01';
+
+10- Coloque SALARIO de 9000.00 para todo mundo
+UPDATE CLIENTES SET SALARIO=9000.00;
+
+11- Atualize o nome do cliente com ID = 7 para José da Silva
+UPDATE CLIENTES SET NOME='José da Silva' WHERE ID = 7;
+
+12- Atualize os dados do clientes de ID = 7 conforme:
+Nome = Luis José da Silva
+CPF = 55555555500
+Data_nasc = 01-01-2000
+Salario = R$18.000,00
+
+UPDATE CLIENTES SET NOME='Luis José da Silva', CPF='55555555500',
+DATA_NASC='2000-01-01', SALARIO='18000' WHERE ID='7';
+
+13- Inserir o atributo HORA_CADASTRO na tabela CLIENTES;
+ALTER TABLE CLIENTES ADD COLUMN HORA_CADASTRO TIME;
+
+14- Coloque a hora 20:05:20 para todos os clientes
+UPDATE CLIENTES SET HORA_CADASTRO='20:05:20';
+
+15- Exclua o atributo HORA_CADASTRO;
+ALTER TABLE CLIENTES DROP COLUMN HORA_CADASTRO;
+
+16-Inserir o atributo DATA_HORA_CADASTRO depois do atributo 
+DATA_NASC
+
+ALTER TABLE CLIENTES ADD COLUMN DATA_HORA_CADASTRO DATETIME AFTER DATA_NASC;
+
+17- Inserir o cliente com os dados:
+Nome = Mariana José da Silva
+CPF = 55555555500
+Data_nasc = 01-01-2000
+Data hora cadastro = 14/06/2018 20:16
+Salario = R$18.000,00
+
+INSERT INTO CLIENTES
+VALUES('', 'Mariana José da Silva', '55555555500', '2000-01-01',
+'2018-06-14 20:16', '18000');
+
+18- Inserir o atributo EMAIL como obrigatório depois do CPF
+ALTER TABLE CLIENTES ADD COLUMN EMAIL VARCHAR(100) NOT NULL AFTER CPF;
+
+19- Selecione NOME e SALARIO dos clientes com renda anual 
+(sem o décimo terceiro salário) maior que R$130.000,00
+SELECT NOME, SALARIO FROM CLIENTES WHERE SALARIO*12>130000; 
+
+20- Atualizar em 10% o salario de todos os clientes
+UPDATE CLIENTES SET SALARIO=SALARIO*1.1;
+
+21- Reduzir o salario em 15% do cliente de id=7
+UPDATE CLIENTES SET SALARIO=SALARIO*0.85 WHERE ID=7;
+
+22- Selecione de forma distinta todos os salários 
+existentes na tabela
+SELECT DISTINCT SALARIO FROM CLIENTES;
+
+23- Selecione os clientes em ordem alfabética pelo nome
+SELECT * FROM CLIENTES ORDER BY NOME;
+
+24- 0Selecione os clientes em ordem decrescente pelo SALARIO
+SELECT * FROM CLIENTES ORDER BY SALARIO DESC;
+
+25- Insira 2 editoras e 3 livros
+INSERT INTO EDITORA
+VALUES('','CAMPUS');
+
+INSERT INTO LIVRO
+VALUES('','O COMPUTADOR','1');
+
+26- Selecione Nome do Livro e Nome da Editora
+SOLUÇÃO 1
+SELECT LIVRO.TITULO, EDITORA.NOME
+FROM LIVRO
+INNER JOIN EDITORA ON (LIVRO.EDITORA_ID = EDITORA.ID);
+
+SOLUÇÃO 2
+SELECT LIVRO.TITULO, EDITORA.NOME
+FROM LIVRO, EDITORA
+WHERE LIVRO.EDITORA_ID = EDITORA.ID;
+
+27- Selecione todos os Clientes com nomes de tamanho igual a 4
+SELECT * FROM CLIENTES WHERE NOME LIKE "____";
+
+28- Selecione os clientes de nome igual a Maria
+SELECT * FROM CLIENTES WHERE NOME='Maria';
+
+29- Selecione os clientes com primeiro nome igual a Maria
+SELECT * FROM CLIENTES WHERE NOME LIKE 'Maria %' OR NOME='Maria';
+
+30- Selecione os clientes que tenham Maria no nome
+SELECT * FROM CLIENTES WHERE NOME LIKE '%Maria%';
+
+31- Selecione os clientes que tenham exatamente um dos nomes Maria
+SELECT * FROM CLIENTES WHERE NOME='Maria' OR NOME LIKE 'Maria %'
+OR NOME LIKE '% Maria' OR NOME LIKE '% Maria %';
+
+OBSERVAÇÃO: Comando NOT inverte a seleção realizada. 
+O comando NOT é colocado depois da cláusula WHERE.
+
+32- Selecione NOME e SALÁRIO dos Clientes com salário entre 1000 e 11000
+SELECT NOME, SALARIO FROM CLIENTES WHERE SALARIO BETWEEN 1000 AND 11000;
+SELECT NOME, SALARIO FROM CLIENTES WHERE SALARIO >= 1000 AND SALARIO <=11000;
+
+33- Acrescente o atributo APLICACAO e colcoque 10000 pra todos
+ALTER TABLE CLIENTES ADD COLUMN APLICACAO DOUBLE;
+UPDATE CLIENTES SET APLICACAO=10000
+
+34- Coloque Aplicacao de 5000 para Nome=Maria
+UPDATE CLIENTES SET APLICACAO=5000 WHERE NOME='Maria';
+
+35- Selecione NOME, SALARIO e APLICACAO dos Clientes com Salário entre 1000 e 11000 
+e que possuem Aplicacao maior que 5000;
+SELECT NOME, SALARIO, APLICACAO FROM CLIENTES WHERE (SALARIO BETWEEN 1000 AND 11000)
+AND (APLICACAO > 5000);
+
+
+
+
+
+
+
+
+
+
